@@ -6,12 +6,14 @@ public class Matriz{
     int linha, coluna;
     Scanner sc = new Scanner(System.in);
 
+    //Construtor
     public Matriz(int linha, int coluna){
         this.linha = linha;
         this.coluna = coluna;
         matriz = new int[linha][coluna];
     }
 
+    //Métodos
     public int[][] getMat(){
         return this.matriz;
     }

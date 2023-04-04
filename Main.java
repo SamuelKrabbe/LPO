@@ -21,5 +21,6 @@ public class Main{
         C.setMat(Matriz.subtrairMatrizes(A.getMat(), B.getMat()));
 
         System.out.println(soma);
+        sc.close();
     }
 }
