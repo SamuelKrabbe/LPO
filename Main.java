@@ -1,93 +1,46 @@
+package pessoa;
 import java.util.Scanner;
 
-class Veiculo{
-    private String cor;
-    private int numPassageiros;
+class Pessoa{
+    private String nome;
+    private int idade;
 
     //construtor
-    Veiculo(String cor, int numPassageiros){
-        this.cor = cor;
-        this.numPassageiros = numPassageiros;
+    Pessoa(String nome, int idade){
+        this.nome = nome;
+        this.idade = idade;
     }
 
     //métodos
-    public void setCor(String cor){
-        this.cor = cor;
+    public void setNome(String nome){
+        this.nome = nome;
     }
 
-    public void setNumPassageiros(int numPassageiros){
-        this.numPassageiros = numPassageiros;
+    public void setIdade(int idade){
+        this.idade = idade;
     }
 
-    public String getCor(){
-        return this.cor;
+    public String getNome(){
+        return this.nome;
     }
 
-    public int getNumPassageiros(){
-        return this.numPassageiros;
+    public int getIdade(){
+        return this.idade;
     }
 
     @Override
     public String toString(){
-        return this.cor + " numPassageiros " + this.numPassageiros;
-    }   
-}
-
-class Carro extends Veiculo{
-    private String marca;
-    private String modelo;
-
-    //construtor
-    Carro(String cor, int numPassageiros, String marca, String modelo){
-        super(cor, numPassageiros);
-        this.marca = marca;
-        this.modelo = modelo;
-    }
-
-    //métodos
-    public void setMarca(String marca){
-        this.marca = marca;
-    }
-
-    public void setModelo(String modelo){
-        this.modelo = modelo;
-    }
-
-    public String getMarca(){
-        return this.marca;
-    }
-
-    public String getModelo(){
-        return this.modelo;
-    }
-    
-    public void acelerar(){
-        System.out.println(String.format("O %s acelerou", modelo));
-    }
-
-    public void freiar(){
-        System.out.println(String.format("O %s freou", modelo));
-    }
-
-    @Override
-    public String toString(){
-        return "Carro " + this.marca + " " + this.modelo + " " + super.getCor() + " numPassageiros " + super.getNumPassageiros();
+        return this.nome + " tem " + this.idade + " anos";
     }   
 }
 
 public class Main{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String cor = sc.next();
-        int numPassageiros = sc.nextInt();
-        String marca = sc.next();
-        String modelo = sc.next();
-        Carro carro = new Carro(cor, numPassageiros, marca, modelo);
+        Pessoa pessoa = new Pessoa(sc.nextLine(), sc.nextInt());
 
-        System.out.println(carro);
-        carro.setModelo(sc.next());
-        System.out.println(carro);
-        carro.acelerar();
-        carro.freiar();
+        System.out.println(pessoa);
+        pessoa.setIdade(sc.nextInt());
+        System.out.println(pessoa);
     }
 }
