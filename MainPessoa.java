@@ -1,4 +1,3 @@
-package pessoa;
 import java.util.Scanner;
 
 class Pessoa{
