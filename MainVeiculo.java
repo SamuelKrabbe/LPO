@@ -89,5 +89,6 @@ public class MainVeiculo{
         System.out.println(carro);
         carro.acelerar();
         carro.freiar();
+        sc.close();
     }
 }

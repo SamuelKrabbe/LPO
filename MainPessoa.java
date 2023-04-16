@@ -41,5 +41,6 @@ public class MainPessoa{
         System.out.println(pessoa);
         pessoa.setIdade(sc.nextInt());
         System.out.println(pessoa);
+        sc.close();
     }
 }
