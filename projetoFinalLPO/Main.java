@@ -26,7 +26,7 @@ public class Main {
         System.out.println("Quer reservar um voo?(sim - s | não - n) -> ");
         querReservar = sc.nextLine();
 
-        while (querReservar == "s") {
+        while (querReservar == "s" || querReservar == "sim") {
             System.out.println("Para reservar seu voo complete os campos abaixo.");
 
             // Endereço ==================================================
