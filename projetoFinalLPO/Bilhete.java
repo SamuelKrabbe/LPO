@@ -8,21 +8,17 @@ public class Bilhete<T> {
     private List<Passagem> listPassagem;
     private double preco;
     private CompanhiaAerea compAerea;
-    private String tipoReserva;
 
-    public Bilhete(T numBilhete, List<Passagem> listPassagem, double preco, CompanhiaAerea compAerea,
-            String tipoReserva) {
+    public Bilhete(T numBilhete, List<Passagem> listPassagem, double preco, CompanhiaAerea compAerea) {
         this.numBilhete = numBilhete;
         this.listPassagem = listPassagem;
         this.preco = preco;
         this.compAerea = compAerea;
-        this.tipoReserva = tipoReserva;
     }
 
     public void imprimirBilhete() {
         System.out.println("- Número do Bilhete: " + numBilhete);
         System.out.println("- Companhia Aérea: " + compAerea.getNomeCompanhia());
-        System.out.println("- Tipo de reserva: " + tipoReserva);
         System.out.println("- Preço: R$" + preco);
 
         System.out.println("- Passageiros:");
@@ -64,13 +60,5 @@ public class Bilhete<T> {
 
     public void setCompAerea(CompanhiaAerea compAerea) {
         this.compAerea = compAerea;
-    }
-
-    public String getTipoReserva() {
-        return tipoReserva;
-    }
-
-    public void setTipoReserva(String tipoReserva) {
-        this.tipoReserva = tipoReserva;
     }
 }

@@ -1,0 +1,48 @@
+		Rua A 123 Bairro A Cidade A CEP A
+        Rua B 456 Bairro B Cidade B CEP B
+        Rua C 789 Bairro C Cidade C CEP C
+        Rua D 987 Bairro D Cidade D CEP D
+        Rua E 654 Bairro E Cidade E CEP E
+        Rua F 321 Bairro F Cidade F CEP F
+        
+        A001 enderecos.get0
+        A002 enderecos.get1
+        A003 enderecos.get2
+        A004 enderecos.get3
+        
+        C001 Latam Airlines
+        C002 Emirates
+        C003 Air France
+        C004 Lufthansa
+        
+        V001 aeroportos.get0 aeroportos.get1 null null 100
+        V002 aeroportos.get1 aeroportos.get2 null null 150
+        V003 aeroportos.get2 aeroportos.get3 null null 200
+        V004 aeroportos.get3 aeroportos.get0 null null 120
+        
+        Ana CPF1 RG1 enderecos.get0 Celular1 AB1234567
+        Pedro CPF2 RG2 enderecos.get1 Celular2 CD2345678
+        Sofia CPF3 RG3 enderecos.get2 Celular3 EF3456789
+        Lucas CPF4 RG4 enderecos.get3 Celular4 GH4567890
+        Laura CPF5 RG5 enderecos.get4 Celular5 IJ5678901
+        Gabriel CPF6 RG6 enderecos.get5 Celular6 KL6789012
+        Alice CPF7 RG7 enderecos.get0 Celular7 MN7890123
+        João CPF8 RG8 enderecos.get1 Celular8 OP8901234
+        Isabella CPF9 RG9 enderecos.get2 Celular9 QR9012345
+        Miguel CPF10 RG10 enderecos.get3 Celular10 ST0123456
+        
+        P001 voos.get0 null passageiros.get0 Assento 001
+        P002 voos.get1 null passageiros.get1 Assento 002
+        P003 voos.get2 null passageiros.get2 Assento 003
+        P004 voos.get3 null passageiros.get3 Assento 004
+        P005 voos.get0 null passageiros.get4 Assento 005
+        P006 voos.get1 null passageiros.get5 Assento 006
+        P007 voos.get2 null passageiros.get6 Assento 007
+        P008 voos.get3 null passageiros.get7 Assento 008
+        P009 voos.get0 null passageiros.get8 Assento 009
+        P010 voos.get1 null passageiros.get9 Assento 010
+        
+        B001 passagens.subList0 2 599.9 companhiasAereas.get0 Economica
+        B002 passagens.subList2 4 699.9 companhiasAereas.get1 Economica
+        B003 passagens.subList4 6 799.9 companhiasAereas.get2 Executiva
+        B004 passagens.subList6 8 899.9 companhiasAereas.get3 Primeira Classe
