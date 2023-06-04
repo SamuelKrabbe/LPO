@@ -64,6 +64,7 @@ public class Celular implements Comparable<Celular>{
                 celulares.add(celular);
             }catch(Exception E){
                 System.out.println("Entrada Inválida!");
+                sc.close();
                 return;
             }
         }
