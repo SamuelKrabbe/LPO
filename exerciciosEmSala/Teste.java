@@ -1,3 +1,4 @@
+package exerciciosEmSala;
 import java.util.Scanner;
 
 //INTERFACES

@@ -1,4 +1,4 @@
-package matrizes;
+package exerciciosEmSala.matrizes;
 import java.util.Scanner;
 
 public class Matriz{
