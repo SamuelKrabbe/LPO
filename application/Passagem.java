@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public class Passagem implements Comparable<Passagem> {
     private String numero;

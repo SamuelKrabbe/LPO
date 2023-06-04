@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public class Aeroporto {
     private String codAeroporto;

@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public interface Verificavel {
     boolean validar(String codigo);

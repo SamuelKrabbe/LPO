@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 import java.util.Scanner;
 

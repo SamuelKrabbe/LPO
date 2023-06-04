@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public class CompanhiaAerea {
     private String codCompanhia;

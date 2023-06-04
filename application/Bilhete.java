@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,7 +19,7 @@ public class Bilhete<T> {
     public void imprimirBilhete() {
         System.out.println("- Número do Bilhete: " + numBilhete);
         System.out.println("- Companhia Aérea: " + compAerea.getNomeCompanhia());
-        System.out.println("- Preço: R$" + preco);
+        System.out.println(String.format("- Preço: R$%.2f", preco));
 
         System.out.println("- Passageiros:");
         Collections.sort(listPassagem); // Ordena a lista de passagens em ordem alfabética

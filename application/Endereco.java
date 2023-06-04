@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public class Endereco {
     private String rua;

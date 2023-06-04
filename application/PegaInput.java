@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 import java.util.List;
 import java.util.Scanner;
@@ -49,14 +49,14 @@ public class PegaInput {
         return endereco;
     }
 
-    public Aeroporto getAeroporto(Endereco endereco) {
+    public Aeroporto getAeroporto(Endereco enderecoOrigem) {
         String codAeroporto;
 
         System.out.print("Digite o código IATA do aeroporto de sua escolha (ex.: GRU, SDU, CGH, etc): ");
-        codAeroporto = sc.nextLine();
+        codAeroporto = sc.nextLine().toUpperCase();
         System.out.println();
 
-        Aeroporto aeroportoOrigem = new Aeroporto(codAeroporto, endereco);
+        Aeroporto aeroportoOrigem = new Aeroporto(codAeroporto, enderecoOrigem);
         return aeroportoOrigem;
     }
 
@@ -65,10 +65,10 @@ public class PegaInput {
 
         System.out.println("Qual a companhia aérea de sua preeferência? ");
         System.out.print("Nome da companhia -> ");
-        nomeCompanhia = sc.nextLine();
+        nomeCompanhia = sc.nextLine().toUpperCase();
         System.out.println("");
         System.out.print("Código da companhia -> ");
-        codCompanhia = sc.nextLine();
+        codCompanhia = sc.nextLine().toUpperCase();
         System.out.println();
 
         CompanhiaAerea companhiaAerea = new CompanhiaAerea(codCompanhia, nomeCompanhia);
@@ -84,7 +84,7 @@ public class PegaInput {
         numVoo = sc.nextLine();
         System.out.println();
         System.out.print("Código do aeroporto de destino -> ");
-        codAeroportoDestino = sc.nextLine();
+        codAeroportoDestino = sc.nextLine().toUpperCase();
         System.out.println();
         System.out.println("Digite seu endereço de destino: ");
         Aeroporto aeroportoDestino = new Aeroporto(codAeroportoDestino, getEndereco());
@@ -93,9 +93,8 @@ public class PegaInput {
         return voo;
     }
 
-    public Passageiro getPassageiro() {
+    public Passageiro getPassageiro(Endereco enderecoOrigem) {
         String nome, cpf, rg, celular, numPassaporte;
-        Endereco endereco;
 
         System.out.println("Digite as informações do passageiro: ");
         System.out.print("Nome -> ");
@@ -107,22 +106,20 @@ public class PegaInput {
         System.out.print("RG -> ");
         rg = sc.nextLine();
         System.out.println();
-        System.out.println("Digite o endereço do passageiro: ");
-        endereco = getEndereco();
         System.out.print("Celular -> ");
         celular = sc.nextLine();
         System.out.println();
         System.out.print("Número do passaporte -> ");
         numPassaporte = sc.nextLine();
         System.out.println();
-        Passageiro passageiro = new Passageiro(nome, cpf, rg, endereco, celular, numPassaporte);
+        Passageiro passageiro = new Passageiro(nome, cpf, rg, enderecoOrigem, celular, numPassaporte);
         return passageiro;
     }
 
-    public Passagem getPassagem(Voo vooIda, Passageiro passageiro, int variavelDeControle) {
+    public Passagem getPassagem(Voo vooIda, Passageiro passageiro, int qntDeReservas) {
         String numPassagem, assento;
 
-        numPassagem = geraNumPassagem(variavelDeControle);
+        numPassagem = geraNumPassagem(qntDeReservas);
 
         System.out.print("Digite o código do assento de preferência: ");
         assento = sc.nextLine();
@@ -130,15 +127,15 @@ public class PegaInput {
         return passagem;
     }
 
-    public String geraNumPassagem(int variavelDeControle) {
+    public String geraNumPassagem(int qntDeReservas) {
         String prefixoPassagem = "P";
-        return prefixoPassagem + variavelDeControle;
+        return prefixoPassagem + qntDeReservas;
     }
 
     public Bilhete<String> getBilhete(List<Passagem> passagens, int limiteInferior, int limiteSuperior,
-            CompanhiaAerea companhiaAerea, int variavelDeControle) {
+            CompanhiaAerea companhiaAerea, int qntDeReservas) {
         String numBilhete;
-        numBilhete = geraNumBilhete(variavelDeControle);
+        numBilhete = geraNumBilhete(qntDeReservas);
         double preco = Math.random() * 2000;
         List<Passagem> passagensSubLista = passagens.subList(limiteInferior, limiteSuperior);
 
@@ -146,8 +143,8 @@ public class PegaInput {
         return bilhete;
     }
 
-    public String geraNumBilhete(int variavelDeControle) {
+    public String geraNumBilhete(int qntDeReservas) {
         String prefixoBilhete = "B";
-        return prefixoBilhete + variavelDeControle;
+        return prefixoBilhete + qntDeReservas;
     }
 }

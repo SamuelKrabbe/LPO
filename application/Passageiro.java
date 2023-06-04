@@ -1,4 +1,4 @@
-package projetoFinalLPO;
+package application;
 
 public class Passageiro extends Pessoa {
     private String numPassaporte;
