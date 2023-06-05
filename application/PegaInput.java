@@ -147,4 +147,32 @@ public class PegaInput {
         String prefixoBilhete = "B";
         return prefixoBilhete + qntDeReservas;
     }
+
+    public String menu() {
+        String opMenu;
+        System.out.println("===============================================");
+        System.out.println("MENU: ");
+        System.out.println("Reservar um voo - 1");
+        System.out.println("Ver bilhetes - 2");
+        System.out.println("Alterar informação no bilhete - 3");
+        System.out.println("Sair - 4");
+        System.out.println("===============================================");
+
+        System.out.println();
+        System.out.print("-> ");
+        opMenu = sc.nextLine();
+        System.out.println();
+        return opMenu;
+    }
+
+    public void reservaFeita(boolean comSucesso) {
+        if (comSucesso) {
+            System.out.println();
+            System.out.println("Voo reservado com sucesso!\nAgradeçemos a preferência, tenha um bom dia!");
+            System.out.println();
+        } else {
+            System.out.println("Nenhum voo foi reservado...");
+            System.out.println();
+        }
+    }
 }

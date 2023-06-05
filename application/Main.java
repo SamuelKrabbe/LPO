@@ -10,7 +10,7 @@ public class Main {
         PegaInput input = new PegaInput();
         Scanner sc = new Scanner(System.in);
         int qntDeReservas = 0;
-        String querReservar;
+        String opMenu;
         int quantPassageiros = 0, limiteInferior = 0;
         boolean intValido = false;
 
@@ -23,76 +23,96 @@ public class Main {
         List<Passagem> passagens = new ArrayList<>();
         List<Bilhete<String>> bilhetes = new ArrayList<>();
 
-        System.out.print("Quer reservar um voo?(sim - s | não - n) -> ");
-        querReservar = sc.nextLine().toLowerCase();
-        System.out.println();
+        do {
+            do {
+                opMenu = input.menu();
 
-        while (querReservar.equals("s") || querReservar.equals("sim")) {
-            System.out.println("Para reservar seu voo complete os campos abaixo.");
-            System.out.println();
+                if (!opMenu.equals("1") && !opMenu.equals("2") && !opMenu.equals("3") && !opMenu.equals("4"))
+                    System.out.println("Opção Inválida! Digite 1, 2 ou 3 conforme abaixo...");
+            } while (!opMenu.equals("1") && !opMenu.equals("2") && !opMenu.equals("3") && !opMenu.equals("4"));
 
-            //Endereço ====================================================
-            System.out.println("Digite o endereço de origem: ");
-            enderecos.add(input.getEndereco());
-            System.out.println();
-
-            // Aeroporto ==================================================
-            aeroportos.add(input.getAeroporto(enderecos.get(qntDeReservas)));
-
-            // Companhia Aérea ============================================
-            companhiasAereas.add(input.getCompanhiaAerea());
-
-            // Voo ========================================================
-            voos.add(input.getVoo(aeroportos.get(qntDeReservas)));
-
-            // Passageiros =================================================
-            while (!intValido) {
-                try {
-                    System.out.println("Digite a quantidade de passageiros: ");
-                    System.out.println("-- ATENÇÃO! As passagens são por passageiro e não por voo --");
-                    quantPassageiros = sc.nextInt();
+            switch (opMenu) {
+                case "1":
+                    System.out.println("Preencha os campos abaixo.");
                     System.out.println();
-                    intValido = true;
-                } catch (InputMismatchException e) {
-                    System.out.println("Número inválido! Digite novamente!");
+
+                    // Endereço ====================================================
+                    System.out.println("Digite o endereço de origem: ");
+                    enderecos.add(input.getEndereco());
+                    System.out.println();
+
+                    // Aeroporto ==================================================
+                    aeroportos.add(input.getAeroporto(enderecos.get(qntDeReservas)));
+
+                    // Companhia Aérea ============================================
+                    companhiasAereas.add(input.getCompanhiaAerea());
+
+                    // Voo ========================================================
+                    voos.add(input.getVoo(aeroportos.get(qntDeReservas)));
+
+                    // Passageiros =================================================
+                    while (!intValido) {
+                        try {
+                            System.out.println("Digite a quantidade de passageiros: ");
+                            System.out.println("-- ATENÇÃO! As passagens são uma por pessoa! --");
+                            System.out.print("-> ");
+                            quantPassageiros = sc.nextInt();
+                            System.out.println();
+
+                            intValido = true;
+                        } catch (InputMismatchException e) {
+                            System.out.println("Número inválido! Digite novamente!");
+                            sc.nextLine();
+                        }
+                    }
                     sc.nextLine();
-                }
+                    qntPassageirosPorVoo.add(quantPassageiros);
+
+                    for (int i = 0; i < quantPassageiros; i++)
+                        passageiros.add(input.getPassageiro(enderecos.get(qntDeReservas)));
+
+                    // Passagens ================================================
+                    for (int j = 0; j < quantPassageiros; j++)
+                        passagens.add(input.getPassagem(voos.get(qntDeReservas), passageiros.get(j), qntDeReservas));
+
+                    for (Passagem passagem : passagens) {
+                        if (passagem.verificarCapacidade()) {
+                            Voo vooVolta = voos.get((voos.indexOf(passagem.getVooIda()) + 1) % voos.size());
+                            passagem.setVooVolta(vooVolta);
+                        }
+                    }
+
+                    for (int k = 0; k < qntPassageirosPorVoo.size(); k++) {
+                        bilhetes.add(input.getBilhete(passagens, limiteInferior, qntPassageirosPorVoo.get(k),
+                                companhiasAereas.get(k), qntDeReservas));
+                        limiteInferior = qntPassageirosPorVoo.get(k);
+                    }
+
+                    input.reservaFeita(true);
+                    qntDeReservas++;
+                    break;
+                case "2":
+                    if (bilhetes.isEmpty()) {
+                        input.reservaFeita(false);
+                    } else {
+                        for (Bilhete<String> bilhete : bilhetes) {
+                            System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
+                            bilhete.imprimirBilhete();
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case "3":
+                    System.out.println("Em manutenção, volte mais tarde...");
+                    System.out.println();
+                    break;
+                case "4":
+                    break;
+
             }
-            sc.nextLine();
-            qntPassageirosPorVoo.add(quantPassageiros);
+        } while (!opMenu.equals("4"));
 
-            for (int i = 0; i < quantPassageiros; i++)
-                passageiros.add(input.getPassageiro(enderecos.get(qntDeReservas)));
-
-            // Passagens ================================================
-            for (int j = 0; j < quantPassageiros; j++)
-                passagens.add(input.getPassagem(voos.get(qntDeReservas), passageiros.get(j), qntDeReservas));
-
-            // Reserva mais voos
-            System.out.println("Quer reservar outro voo?(sim - s | não - n) -> ");
-            querReservar = sc.nextLine().toLowerCase();
-            qntDeReservas++;
-        }
-
-        for (Passagem passagem : passagens) {
-            if (passagem.verificarCapacidade()) {
-                Voo vooVolta = voos.get((voos.indexOf(passagem.getVooIda()) + 1) % voos.size());
-                passagem.setVooVolta(vooVolta);
-            }
-        }
-
-        for (int k = 0; k < qntPassageirosPorVoo.size(); k++) {
-            bilhetes.add(input.getBilhete(passagens, limiteInferior, qntPassageirosPorVoo.get(k),
-                    companhiasAereas.get(k), qntDeReservas));
-            limiteInferior = qntPassageirosPorVoo.get(k);
-        }
-
-        System.out.println("\nPassageiros de cada bilhete em ordem alfabética:");
-        for (Bilhete<String> bilhete : bilhetes) {
-            System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
-            bilhete.imprimirBilhete();
-            System.out.println();
-        }
+        System.out.println("Agradeçemos a preferência, tenha um bom dia!");
         sc.close();
     }
 }
