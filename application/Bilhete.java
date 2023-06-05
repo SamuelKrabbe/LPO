@@ -26,7 +26,7 @@ public class Bilhete<T> {
 
         for (Passagem passagem : listPassagem) {
             System.out.println("  -> Passagem de " + passagem.getPassageiro().getNome() + ": ");
-            System.out.println("      " + passagem);
+            System.out.println(passagem);
         }
     }
 

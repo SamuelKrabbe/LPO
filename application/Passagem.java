@@ -40,11 +40,11 @@ public class Passagem implements Comparable<Passagem> {
     public String toString() {
         String strVooVolta = vooVolta != null ? vooVolta.getNumVoo() : "N/A";
 
-        return "Número da Passagem: " + numero + "\n" +
-                "Voo de Ida: " + vooIda.getNumVoo() + "\n" +
-                "Voo de Volta: " + strVooVolta + "\n" +
-                "Passageiro: " + passageiro.getNome() + "\n" +
-                "Assento: " + assento;
+        return "      Passagem " + numero + ": " + "\n" +
+                "      -- Voo de Ida: " + vooIda.getNumVoo() + "\n" +
+                "      -- Voo de Volta: " + strVooVolta + "\n" +
+                "      -- Passageiro: " + passageiro.getNome() + "\n" +
+                "      -- Assento: " + assento;
     }
 
     @Override
