@@ -1,8 +1,9 @@
+package exerciciosEmSala;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-public class questao4 {
+public class questao4P2 {
     public static void main(String[] args) {
         Map<String, String> mapa = new TreeMap<>();
 

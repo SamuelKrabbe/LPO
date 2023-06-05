@@ -1,3 +1,4 @@
+package exerciciosEmSala;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -31,7 +32,7 @@ class Especialidade implements Comparable<Especialidade> {
     }
 }
 
-public class questao2 {
+public class questao2P2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         List<Especialidade> especialidades = new ArrayList<>();

@@ -1,3 +1,4 @@
+package exerciciosEmSala;
 import java.util.Scanner;
 
 
@@ -88,7 +89,7 @@ class ProdutoIndustrializado extends Produto implements Tributavel {
     }
 }
 
-public class questao1 {
+public class questao1P2 {
     public static void main(String[] args) {
         try {
             Scanner sc = new Scanner(System.in);

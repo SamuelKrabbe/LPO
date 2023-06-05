@@ -152,10 +152,10 @@ public class PegaInput {
         String opMenu;
         System.out.println("===============================================");
         System.out.println("MENU: ");
-        System.out.println("Reservar um voo - 1");
-        System.out.println("Ver bilhetes - 2");
-        System.out.println("Alterar informação no bilhete - 3");
-        System.out.println("Sair - 4");
+        System.out.println("Reservar um voo - digite 1");
+        System.out.println("Ver informações no(s) bilhete(s) - digite 2");
+        System.out.println("Alterar informação no(s) bilhete(s) - digite 3");
+        System.out.println("Sair - digite 4");
         System.out.println("===============================================");
 
         System.out.println();

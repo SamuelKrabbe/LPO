@@ -25,7 +25,8 @@ public class Bilhete<T> {
         Collections.sort(listPassagem); // Ordena a lista de passagens em ordem alfabética
 
         for (Passagem passagem : listPassagem) {
-            System.out.println("  -> " + passagem.getPassageiro().getNome());
+            System.out.println("  -> Passagem de " + passagem.getPassageiro().getNome() + ": ");
+            System.out.println("      " + passagem);
         }
     }
 

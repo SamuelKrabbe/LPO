@@ -1,7 +1,8 @@
+package exerciciosEmSala;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class questao3 {
+public class questao3P2 {
     public static <T extends Comparable<T>> int procuraValor(T[][] matriz, T valor) {
         int contador = 0;
 

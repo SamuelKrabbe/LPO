@@ -89,6 +89,11 @@ public class Main {
                     }
 
                     input.reservaFeita(true);
+                    for (Bilhete<String> bilhete : bilhetes) {
+                        System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
+                        bilhete.imprimirBilhete();
+                        System.out.println();
+                    }
                     qntDeReservas++;
                     break;
                 case "2":
