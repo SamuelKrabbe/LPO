@@ -71,8 +71,8 @@ public class questao2 {
         }
         System.out.println();
 
-        Especialidade menorEspecialidade = especialidades.get(0);
-        System.out.println("Maior " + menorEspecialidade);
+        Especialidade maiorEspecialidade = Collections.max(especialidadesReverse);
+        System.out.println("Maior " + maiorEspecialidade);
         n--;
 
         System.out.print("[");
