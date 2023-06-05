@@ -102,7 +102,7 @@ public class Main {
                     } else {
                         for (Bilhete<String> bilhete : bilhetes) {
                             System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
-                            bilhete.imprimirBilhete();
+                            bilhete.imprimirTodoBilhete();
                             System.out.println();
                         }
                     }

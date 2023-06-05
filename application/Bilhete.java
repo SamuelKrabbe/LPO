@@ -25,6 +25,19 @@ public class Bilhete<T> {
         Collections.sort(listPassagem); // Ordena a lista de passagens em ordem alfabética
 
         for (Passagem passagem : listPassagem) {
+            System.out.println("  -> " + passagem.getPassageiro().getNome() + ";");
+        }
+    }
+
+    public void imprimirTodoBilhete() {
+        System.out.println("- Número do Bilhete: " + numBilhete);
+        System.out.println("- Companhia Aérea: " + compAerea.getNomeCompanhia());
+        System.out.println(String.format("- Preço: R$%.2f", preco));
+
+        System.out.println("- Passageiros:");
+        Collections.sort(listPassagem); // Ordena a lista de passagens em ordem alfabética
+
+        for (Passagem passagem : listPassagem) {
             System.out.println("  -> Passagem de " + passagem.getPassageiro().getNome() + ": ");
             System.out.println(passagem);
         }
