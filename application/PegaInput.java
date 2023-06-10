@@ -7,15 +7,14 @@ import java.util.InputMismatchException;
 public class PegaInput {
     public Scanner sc;
 
+    // CONSTRUTOR
     public PegaInput() {
         this.sc = new Scanner(System.in);
     }
 
-    public <T> boolean verificaInteiro(T valor) {
-        return valor instanceof Integer;
-    }
-
+    // MÉTODOS DA CLASSE
     public Endereco getEndereco() throws InputMismatchException {
+        //lê o endereço de origem do usuário
         String rua, bairro, cidade, cep;
         boolean intValido = false;
         int numero = 0;
@@ -50,6 +49,7 @@ public class PegaInput {
     }
 
     public Aeroporto getAeroporto(Endereco enderecoOrigem) {
+        //lê o aeroporto de origem do usuário
         String codAeroporto;
 
         System.out.print("Digite o código IATA do aeroporto de sua escolha (ex.: GRU, SDU, CGH, etc): ");
@@ -61,27 +61,36 @@ public class PegaInput {
     }
 
     public CompanhiaAerea getCompanhiaAerea() {
+        //lê a companhia aérea que o usuário escolheu
         String nomeCompanhia, codCompanhia;
 
         System.out.println("Qual a companhia aérea de sua preeferência? ");
         System.out.print("Nome da companhia -> ");
         nomeCompanhia = sc.nextLine().toUpperCase();
         System.out.println("");
-        System.out.print("Código da companhia -> ");
-        codCompanhia = sc.nextLine().toUpperCase();
+        codCompanhia = geraCodCompanhia(nomeCompanhia);
         System.out.println();
 
         CompanhiaAerea companhiaAerea = new CompanhiaAerea(codCompanhia, nomeCompanhia);
         return companhiaAerea;
     }
 
+    public String geraCodCompanhia(String nomeCompanhia) {
+        //gera o código da companhia aérea escolhida pelo usuário
+        String inicio = nomeCompanhia.substring(0, 1);
+        String meio = nomeCompanhia.substring(nomeCompanhia.length() / 2, (nomeCompanhia.length() / 2) + 1);
+        String fim = nomeCompanhia.substring(nomeCompanhia.length() - 1);
+        String codigo = inicio + meio + fim;
+        return codigo;
+    }
+
     public Voo getVoo(Aeroporto aeroportoOrigem) {
+        //lê as informações do voo do usuário
         String numVoo, codAeroportoDestino;
         int capacidade = (int) (Math.random() * 500);
 
         System.out.println("Escolha seu voo: ");
-        System.out.print("Número do voo -> ");
-        numVoo = sc.nextLine();
+        numVoo = geraNumeroVoo();
         System.out.println();
         System.out.print("Código do aeroporto de destino -> ");
         codAeroportoDestino = sc.nextLine().toUpperCase();
@@ -93,7 +102,14 @@ public class PegaInput {
         return voo;
     }
 
+    public String geraNumeroVoo() {
+        //gera um número de voo aleatório
+        int numeroVoo = (int) (Math.random() * 9000) + 1000;
+        return String.valueOf(numeroVoo);
+    }
+
     public Passageiro getPassageiro(Endereco enderecoOrigem) {
+        //lê as informações dos passageiro
         String nome, cpf, rg, celular, numPassaporte;
 
         System.out.println("Digite as informações do passageiro: ");
@@ -117,23 +133,35 @@ public class PegaInput {
     }
 
     public Passagem getPassagem(Voo vooIda, Passageiro passageiro, int qntDeReservas) {
+        //gera uma passagem para tal passageiro
         String numPassagem, assento;
 
         numPassagem = geraNumPassagem(qntDeReservas);
 
         System.out.print("Digite o código do assento de preferência: ");
-        assento = sc.nextLine();
+        assento = geraAssentoPassagem(qntDeReservas);
         Passagem passagem = new Passagem(numPassagem, vooIda, null, passageiro, assento);
         return passagem;
     }
 
+    public String geraAssentoPassagem(int qntDeReservas) {
+        //gera o número do assento baseado na ordem de reservas
+        String prefixoAssento = "A";
+        return prefixoAssento + qntDeReservas;
+    }
+
     public String geraNumPassagem(int qntDeReservas) {
+        //gera o número da passagem baseado na ordem de reservas
         String prefixoPassagem = "P";
         return prefixoPassagem + qntDeReservas;
     }
 
     public Bilhete<String> getBilhete(List<Passagem> passagens, int limiteInferior, int limiteSuperior,
             CompanhiaAerea companhiaAerea, int qntDeReservas) {
+        /*gera um bilhete levando em conta a quantidade de passagens de cada bilhete, 
+        usa o limite inferior e superior para separar a lista de passagens de acordo
+        com a quantidade de reservas feitas
+        */
         String numBilhete;
         numBilhete = geraNumBilhete(qntDeReservas);
         double preco = Math.random() * 2000;
@@ -144,11 +172,13 @@ public class PegaInput {
     }
 
     public String geraNumBilhete(int qntDeReservas) {
+        //gera o número do bilhete baseado na ordem de reservas
         String prefixoBilhete = "B";
         return prefixoBilhete + qntDeReservas;
     }
 
     public String menu() {
+        //layout do menu inicial
         String opMenu;
         System.out.println("===============================================");
         System.out.println("MENU: ");
@@ -166,6 +196,7 @@ public class PegaInput {
     }
 
     public void reservaFeita(boolean comSucesso) {
+        //mensagem para quando a reserva foi feita com sucesso... ou não.
         if (comSucesso) {
             System.out.println();
             System.out.println("Voo reservado com sucesso!\nAgradeçemos a preferência, tenha um bom dia!");

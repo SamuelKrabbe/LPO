@@ -7,14 +7,17 @@ import java.util.InputMismatchException;
 
 public class Main {
     public static void main(String[] args) {
-        PegaInput input = new PegaInput();
         Scanner sc = new Scanner(System.in);
-        int qntDeReservas = 0;
-        String opMenu;
-        int quantPassageiros = 0, limiteInferior = 0;
-        boolean intValido = false;
+        PegaInput input = new PegaInput(); //para ler as entradas sem poluir o método main
+        int qntDeReservas = 0; //para o controle da quantidade de voos reservados
+        String opMenu; //para escolher qual operação deseja fazer no menu inicial
+        int quantPassageiros = 0, limiteInferior = 0; //para o controle dos passageiros em cada bilhete
+        boolean intValido = false; //para verificar as entradas com números inteiros
 
+        //lista para guardar quantos passageiros vão em cada bilhete
         List<Integer> qntPassageirosPorVoo = new ArrayList<Integer>();
+
+        //listas de cada classe como pedido no trabalho
         List<Endereco> enderecos = new ArrayList<>();
         List<Aeroporto> aeroportos = new ArrayList<>();
         List<CompanhiaAerea> companhiasAereas = new ArrayList<>();
@@ -25,6 +28,8 @@ public class Main {
 
         do {
             do {
+                //lendo a operação que o usuário deseja fazer
+                //reserva - 1 | mostrar bilhete(s) - 2 | alterar informação(ões) - 3 | sair - 4
                 opMenu = input.menu();
 
                 if (!opMenu.equals("1") && !opMenu.equals("2") && !opMenu.equals("3") && !opMenu.equals("4"))
@@ -33,6 +38,7 @@ public class Main {
 
             switch (opMenu) {
                 case "1":
+                    //no caso 1 fazemos a reserva do voo
                     System.out.println("Preencha os campos abaixo.");
                     System.out.println();
 
@@ -75,6 +81,7 @@ public class Main {
                     for (int j = 0; j < quantPassageiros; j++)
                         passagens.add(input.getPassagem(voos.get(qntDeReservas), passageiros.get(j), qntDeReservas));
 
+                    // Colocando o voo de volta em cada passagem
                     for (Passagem passagem : passagens) {
                         if (passagem.verificarCapacidade()) {
                             Voo vooVolta = voos.get((voos.indexOf(passagem.getVooIda()) + 1) % voos.size());
@@ -82,6 +89,7 @@ public class Main {
                         }
                     }
 
+                    // Bilhetes 
                     for (int k = 0; k < qntPassageirosPorVoo.size(); k++) {
                         bilhetes.add(input.getBilhete(passagens, limiteInferior, qntPassageirosPorVoo.get(k),
                                 companhiasAereas.get(k), qntDeReservas));
@@ -96,7 +104,9 @@ public class Main {
                     }
                     qntDeReservas++;
                     break;
+
                 case "2":
+                    //no caso 2 imprimimos os bilhetes dos voos reservados
                     if (bilhetes.isEmpty()) {
                         input.reservaFeita(false);
                     } else {
@@ -108,10 +118,12 @@ public class Main {
                     }
                     break;
                 case "3":
+                    //no caso 3 permitimos a alteração de informações
                     System.out.println("Em manutenção, volte mais tarde...");
                     System.out.println();
                     break;
                 case "4":
+                    //no caso 4 encerramos o programa
                     break;
 
             }
