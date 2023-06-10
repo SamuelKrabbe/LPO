@@ -138,7 +138,6 @@ public class PegaInput {
 
         numPassagem = geraNumPassagem(qntDeReservas);
 
-        System.out.print("Digite o código do assento de preferência: ");
         assento = geraAssentoPassagem(qntDeReservas);
         Passagem passagem = new Passagem(numPassagem, vooIda, null, passageiro, assento);
         return passagem;
