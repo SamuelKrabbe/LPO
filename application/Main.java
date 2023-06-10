@@ -27,14 +27,9 @@ public class Main {
         List<Bilhete<String>> bilhetes = new ArrayList<>();
 
         do {
-            do {
-                //lendo a operação que o usuário deseja fazer
-                //reserva - 1 | mostrar bilhete(s) - 2 | alterar informação(ões) - 3 | sair - 4
-                opMenu = input.menu();
-
-                if (!opMenu.equals("1") && !opMenu.equals("2") && !opMenu.equals("3") && !opMenu.equals("4"))
-                    System.out.println("Opção Inválida! Digite 1, 2 ou 3 conforme abaixo...");
-            } while (!opMenu.equals("1") && !opMenu.equals("2") && !opMenu.equals("3") && !opMenu.equals("4"));
+            //lendo a operação que o usuário deseja fazer
+            //reserva - 1 | mostrar bilhete(s) - 2 | alterar informação(ões) - 3 | sair - 4
+            opMenu = input.menuInicial();
 
             switch (opMenu) {
                 case "1":
@@ -118,14 +113,39 @@ public class Main {
                     }
                     break;
                 case "3":
-                    //no caso 3 permitimos a alteração de informações
-                    System.out.println("Em manutenção, volte mais tarde...");
-                    System.out.println();
+                    // no caso 3, permitimos a alteração de informações
+                    String opAlteracao;
+                    do {
+                        opAlteracao = input.menuAlteraInfo();
+
+                        switch (opAlteracao) {
+                            case "1":
+                                // Alterar informações do Passageiro
+                                // Implemente o código para alterar as informações do passageiro aqui
+                                break;
+                            case "2":
+                                // Alterar informações do Voo
+                                // Implemente o código para alterar as informações do voo aqui
+                                break;
+                            case "3":
+                                // Alterar informações do Bilhete
+                                // Implemente o código para alterar as informações do bilhete aqui
+                                break;
+                            case "4":
+                                // Voltar ao menu principal
+                                break;
+                            default:
+                                System.out.println("Opção Inválida! Digite 1, 2, 3 ou 4.");
+                                break;
+                        }
+                    } while (!opAlteracao.equals("4"));
                     break;
                 case "4":
                     //no caso 4 encerramos o programa
                     break;
-
+                default:
+                    System.out.println("Opção Inválida! Digite 1, 2, 3 ou 4.");
+                    break;
             }
         } while (!opMenu.equals("4"));
 

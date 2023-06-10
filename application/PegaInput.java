@@ -176,7 +176,7 @@ public class PegaInput {
         return prefixoBilhete + qntDeReservas;
     }
 
-    public String menu() {
+    public String menuInicial() {
         //layout do menu inicial
         String opMenu;
         System.out.println("===============================================");
@@ -192,6 +192,24 @@ public class PegaInput {
         opMenu = sc.nextLine();
         System.out.println();
         return opMenu;
+    }
+
+    public String menuAlteraInfo() {
+        // layout do menu para a alteração de informações
+        String opAlteracao;
+        System.out.println("===============================================");
+        System.out.println("Escolha o tipo de informação que deseja alterar:");
+        System.out.println("Informações do Passageiro - digite 1");
+        System.out.println("Informações do Voo - digite 2");
+        System.out.println("Informações do Bilhete - digite 3");
+        System.out.println("Voltar ao menu principal - digite 4");
+        System.out.println("===============================================");
+
+        System.out.println();
+        System.out.print("-> ");
+        opAlteracao = sc.nextLine();
+        System.out.println();
+        return opAlteracao;
     }
 
     public void reservaFeita(boolean comSucesso) {
