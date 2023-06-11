@@ -118,10 +118,12 @@ public class Main {
                             case "1":
                                 // Alterar informações do Passageiro
                                 input.alteraInfoPassageiro(passageiros);
+                                input.alteracaoFeita();
                                 break;
                             case "2":
                                 // Alterar informações do Bilhete
                                 input.alteraInfoBilhete(bilhetes);
+                                input.alteracaoFeita();
                                 break;
                             case "3":
                                 // Voltar ao menu principal

@@ -200,9 +200,8 @@ public class PegaInput {
         System.out.println("===============================================");
         System.out.println("Escolha o tipo de informação que deseja alterar:");
         System.out.println("Informações do Passageiro - digite 1");
-        System.out.println("Informações do Voo - digite 2");
-        System.out.println("Informações do Bilhete - digite 3");
-        System.out.println("Voltar ao menu principal - digite 4");
+        System.out.println("Informações do Bilhete - digite 2");
+        System.out.println("Voltar ao menu principal - digite 3");
         System.out.println("===============================================");
 
         System.out.println();
@@ -261,8 +260,7 @@ public class PegaInput {
                 System.out.println("Digite o endereço de origem: ");
                 System.out.println();
                 endereco = pegaEndereco();
-                listPassagem
-                        .add(pegaPassagem(pegaVoo(pegaAeroporto(endereco)), pegaPassageiro(endereco), bilhetes.size()));
+                listPassagem.add(pegaPassagem(pegaVoo(pegaAeroporto(endereco)), pegaPassageiro(endereco), bilhetes.size()));
                 break;
             case "2":
                 System.out.println("Digite o número da passagem que deseja remover -> ");
@@ -322,7 +320,6 @@ public class PegaInput {
     public void reservaFeita(boolean comSucesso) {
         // mensagem para quando a reserva foi feita com sucesso... ou não.
         if (comSucesso) {
-            System.out.println();
             System.out.println("Voo reservado com sucesso!\nAgradeçemos a preferência, tenha um bom dia!");
             System.out.println();
         } else {
