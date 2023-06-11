@@ -64,7 +64,7 @@ public class PegaInput {
         //lê a companhia aérea que o usuário escolheu
         String nomeCompanhia, codCompanhia;
 
-        System.out.println("Qual a companhia aérea de sua preeferência? ");
+        System.out.println("Qual a companhia aérea de sua preferência? ");
         System.out.print("Nome da companhia -> ");
         nomeCompanhia = sc.nextLine().toUpperCase();
         System.out.println("");
