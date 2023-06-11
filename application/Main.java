@@ -39,17 +39,17 @@ public class Main {
 
                     // Endereço ====================================================
                     System.out.println("Digite o endereço de origem: ");
-                    enderecos.add(input.getEndereco());
+                    enderecos.add(input.pegaEndereco());
                     System.out.println();
 
                     // Aeroporto ==================================================
-                    aeroportos.add(input.getAeroporto(enderecos.get(qntDeReservas)));
+                    aeroportos.add(input.pegaAeroporto(enderecos.get(qntDeReservas)));
 
                     // Companhia Aérea ============================================
-                    companhiasAereas.add(input.getCompanhiaAerea());
+                    companhiasAereas.add(input.pegaCompanhiaAerea());
 
                     // Voo ========================================================
-                    voos.add(input.getVoo(aeroportos.get(qntDeReservas)));
+                    voos.add(input.pegaVoo(aeroportos.get(qntDeReservas)));
 
                     // Passageiros =================================================
                     while (!intValido) {
@@ -70,11 +70,11 @@ public class Main {
                     qntPassageirosPorVoo.add(quantPassageiros);
 
                     for (int i = 0; i < quantPassageiros; i++)
-                        passageiros.add(input.getPassageiro(enderecos.get(qntDeReservas)));
+                        passageiros.add(input.pegaPassageiro(enderecos.get(qntDeReservas)));
 
                     // Passagens ================================================
                     for (int j = 0; j < quantPassageiros; j++)
-                        passagens.add(input.getPassagem(voos.get(qntDeReservas), passageiros.get(j), qntDeReservas));
+                        passagens.add(input.pegaPassagem(voos.get(qntDeReservas), passageiros.get(j), qntDeReservas));
 
                     // Colocando o voo de volta em cada passagem
                     for (Passagem passagem : passagens) {
@@ -86,17 +86,13 @@ public class Main {
 
                     // Bilhetes 
                     for (int k = 0; k < qntPassageirosPorVoo.size(); k++) {
-                        bilhetes.add(input.getBilhete(passagens, limiteInferior, qntPassageirosPorVoo.get(k),
+                        bilhetes.add(input.pegaBilhete(passagens, limiteInferior, qntPassageirosPorVoo.get(k),
                                 companhiasAereas.get(k), qntDeReservas));
                         limiteInferior = qntPassageirosPorVoo.get(k);
                     }
 
                     input.reservaFeita(true);
-                    for (Bilhete<String> bilhete : bilhetes) {
-                        System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
-                        bilhete.imprimirBilhete();
-                        System.out.println();
-                    }
+                    
                     qntDeReservas++;
                     break;
 
@@ -107,7 +103,7 @@ public class Main {
                     } else {
                         for (Bilhete<String> bilhete : bilhetes) {
                             System.out.println("Bilhete " + bilhete.getNumBilhete() + ":");
-                            bilhete.imprimirTodoBilhete();
+                            bilhete.imprimirBilhete();
                             System.out.println();
                         }
                     }
@@ -121,21 +117,17 @@ public class Main {
                         switch (opAlteracao) {
                             case "1":
                                 // Alterar informações do Passageiro
-                                // Implemente o código para alterar as informações do passageiro aqui
+                                input.alteraInfoPassageiro(passageiros);
                                 break;
                             case "2":
-                                // Alterar informações do Voo
-                                // Implemente o código para alterar as informações do voo aqui
+                                // Alterar informações do Bilhete
+                                input.alteraInfoBilhete(bilhetes);
                                 break;
                             case "3":
-                                // Alterar informações do Bilhete
-                                // Implemente o código para alterar as informações do bilhete aqui
-                                break;
-                            case "4":
                                 // Voltar ao menu principal
                                 break;
                             default:
-                                System.out.println("Opção Inválida! Digite 1, 2, 3 ou 4.");
+                                System.out.println("Opção Inválida! Digite 1, 2 ou 3.");
                                 break;
                         }
                     } while (!opAlteracao.equals("4"));
