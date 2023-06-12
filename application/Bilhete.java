@@ -32,7 +32,6 @@ public class Bilhete<T> {
         }
     }
 
-
     // Getters e Setters
     public T getNumBilhete() {
         return numBilhete;
