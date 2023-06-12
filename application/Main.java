@@ -25,7 +25,7 @@ public class Main {
         List<Bilhete<String>> bilhetes = new ArrayList<>();
 
         // INTRODUÇÃO AO SISTEMA
-        System.out.println("--- BEM VINDO AO K.P. RESERVAS DE VOO OFFLINE!!! ---");
+        System.out.println("--- BEM VINDO AO K&P RESERVAS DE VOO OFFLINE!!! ---");
         System.out.println("-- AQUI O SEU ATENDIMENTO É NOSSA PRIORIDADE! --");
         System.out.println();
         System.out.println("- Para fazer reservas responda às perguntas abaixo -");
