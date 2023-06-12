@@ -1,5 +1,3 @@
-package application;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -226,10 +224,14 @@ class Bilhete<T> {
         // cria uma copia da lista de passagens
         List<Passagem> passagemCopy = new ArrayList<>(listPassagem);
 
-        // imprime cada passagem do bilhete
-        synchronized (passagemCopy) {
-        	for (Passagem passagem : passagemCopy) {
-                System.out.println("  -> " + passagem + ";");
+        if (passagemCopy.isEmpty())
+            System.out.println("Nenhuma passagem...");
+        else {
+            // imprime cada passagem do bilhete
+            synchronized (passagemCopy) {
+        	    for (Passagem passagem : passagemCopy) {
+                    System.out.println("  -> " + passagem + ";");
+                }
             }
         }
     }
@@ -875,7 +877,7 @@ class PegaInput {
 
     public void alteraInfoPassageiro(List<Passageiro> passageiros) {
         // altera as informações do passageiro especificado pelo usuário
-        System.out.print("Digite o nome do passageiro -> ");
+        System.out.print("Digite o nome do passageiro que deseja alterar -> ");
         String nomePassageiro = sc.nextLine();
         System.out.println();
 
