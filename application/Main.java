@@ -83,8 +83,7 @@ public class Main {
             // Bilhetes
             Collections.sort(passagensSubLista); // Ordena a lista de passagens em ordem alfabética
 
-            bilhetes.add(
-                    input.pegaBilhete(passagensSubLista, companhiasAereas.get(k), k));
+            bilhetes.add(input.pegaBilhete(passagensSubLista, companhiasAereas.get(k), k));
 
             // Reserva feita com sucesso
             input.reservaFeita(true);
