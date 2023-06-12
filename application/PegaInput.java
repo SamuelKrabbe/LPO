@@ -156,11 +156,7 @@ public class PegaInput {
 
     public Bilhete<String> pegaBilhete(List<Passagem> passagens,
             CompanhiaAerea companhiaAerea, int qntDeReservas) {
-        /*
-         * gera um bilhete levando em conta a quantidade de passagens de cada bilhete,
-         * usa o limite inferior e superior para separar a lista de passagens de acordo
-         * com a quantidade de reservas feitas
-         */
+        // gera um bilhete levando em conta a quantidade de passagens de cada bilhete
         String numBilhete;
         numBilhete = geraNumBilhete(qntDeReservas);
         double preco = Math.random() * 2000;
@@ -211,6 +207,7 @@ public class PegaInput {
     }
 
     public void alteraInfoPassageiro(List<Passageiro> passageiros) {
+        // altera as informações do passageiro especificado pelo usuário
         System.out.print("Digite o nome do passageiro -> ");
         String nomePassageiro = sc.nextLine();
         System.out.println();
@@ -243,6 +240,7 @@ public class PegaInput {
     }
 
     public void alteraInfoPassagem(List<Passagem> listPassagem, List<Bilhete<String>> bilhetes) {
+        // altera as informações da passagem especificada pelo usuário
         System.out.println("===============================================");
         System.out.println("-- Escolha uma operação --");
         System.out.println("Adicionar passagem - digite 1");
@@ -296,6 +294,7 @@ public class PegaInput {
     }
 
     public void alteraInfoBilhete(List<Bilhete<String>> bilhetes) {
+        // altera as informações do bilhete especificado pelo usuário
         System.out.print("Digite o número do bilhete -> ");
         String numBilhete = sc.nextLine().toUpperCase();
         System.out.println();

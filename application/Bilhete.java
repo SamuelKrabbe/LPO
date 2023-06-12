@@ -25,6 +25,7 @@ public class Bilhete<T> {
         // cria uma copia da lista de passagens
         List<Passagem> passagemCopy = new ArrayList<>(listPassagem);
 
+        // imprime cada passagem do bilhete
         synchronized (passagemCopy) {
         	for (Passagem passagem : passagemCopy) {
                 System.out.println("  -> " + passagem + ";");
