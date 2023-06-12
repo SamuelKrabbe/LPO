@@ -22,7 +22,7 @@ public class Bilhete<T> {
         System.out.println(String.format("- Preço: R$%.2f", preco));
         System.out.println("- Passagem(ns):");
 
-        // Create a copy of the listPassagem
+        // cria uma copia da lista de passagens
         List<Passagem> passagemCopy = new ArrayList<>(listPassagem);
 
         synchronized (passagemCopy) {

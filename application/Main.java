@@ -12,7 +12,7 @@ public class Main {
         PegaInput input = new PegaInput(); // para ler as entradas sem poluir o método main
         int qntDeReservas; // para o controle da quantidade de voos reservados
         String opMenu; // para escolher qual operação deseja fazer no menu inicial
-        int quantPassageiros = 0, limiteInferior = 0; // para o controle dos passageiros em cada bilhete
+        int quantPassageiros = 0; // para o controle dos passageiros em cada bilhete
         boolean intValido; // para verificar as entradas com números inteiros
 
         // listas de cada classe como pedido no trabalho
@@ -36,6 +36,7 @@ public class Main {
         System.out.println();
 
         for (int k = 0; k < qntDeReservas; k++) {
+            List<Passagem> passagensSubLista = new ArrayList<Passagem>();
             intValido = false;
             System.out.println("Reserva " + (k + 1) + ": ");
 
@@ -74,18 +75,16 @@ public class Main {
                 passageiros.add(input.pegaPassageiro(enderecos.get(k)));
 
             // Passagens ================================================
-            for (int j = 0; j < quantPassageiros; j++)
+            for (int j = 0; j < quantPassageiros; j++) {
                 passagens.add(input.pegaPassagem(voos.get(k), passageiros.get(j), j));
+                passagensSubLista.add(input.pegaPassagem(voos.get(k), passageiros.get(j), j));
+            }
 
             // Bilhetes
-            List<Passagem> passagensSubLista = passagens.subList(limiteInferior,
-                    limiteInferior + quantPassageiros);
             Collections.sort(passagensSubLista); // Ordena a lista de passagens em ordem alfabética
 
             bilhetes.add(
-                    input.pegaBilhete(passagensSubLista, companhiasAereas.get(k),
-                            k));
-            limiteInferior = limiteInferior + quantPassageiros;
+                    input.pegaBilhete(passagensSubLista, companhiasAereas.get(k), k));
 
             // Reserva feita com sucesso
             input.reservaFeita(true);
