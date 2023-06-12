@@ -7,6 +7,7 @@ public class Endereco {
     private String cidade;
     private String cep;
 
+    // CONSTRUTORES
     // Construtor para endereço completo
     public Endereco(String rua, int numero, String bairro, String cidade, String cep) {
         this.rua = rua;
@@ -21,6 +22,7 @@ public class Endereco {
         this.cidade = cidade;
     }
 
+    // MÉTODOS DA CLASSE
     // Getters e Setters
     public String getRua() {
         return rua;

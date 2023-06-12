@@ -7,6 +7,8 @@ public class Passagem implements Comparable<Passagem> {
     private Passageiro passageiro;
     private String assento;
 
+    // CONSTRUTORES
+    // contrutor com de passagem com voo de volta
     public Passagem(String numero, Voo vooIda, Voo vooVolta, Passageiro passageiro, String assento) {
         this.numero = numero;
         this.vooIda = vooIda;
@@ -15,6 +17,7 @@ public class Passagem implements Comparable<Passagem> {
         this.assento = assento;
     }
 
+    // contrutor com de passagem sem voo de volta
     public Passagem(String numero, Voo vooIda, Passageiro passageiro, String assento) {
         this.numero = numero;
         this.vooIda = vooIda;
@@ -22,6 +25,7 @@ public class Passagem implements Comparable<Passagem> {
         this.assento = assento;
     }
 
+    // MÉTODOS DA CLASSE
     public boolean verificarCapacidade() {
         if (vooIda != null && vooIda.getCapacidade() <= 0) {
             System.out.println("Voo de ida sem disponibilidade de assentos.");

@@ -4,11 +4,13 @@ public class CompanhiaAerea {
     private String codCompanhia;
     private String nomeCompanhia;
 
+    // CONSTRUTOR
     public CompanhiaAerea(String codCompanhia, String nomeCompanhia) {
         this.codCompanhia = codCompanhia;
         this.nomeCompanhia = nomeCompanhia;
     }
 
+    // MÉTODOS DA CLASSE
     @Override
     public String toString() {
         return "Código da Companhia Aérea: " + codCompanhia + "\n" +

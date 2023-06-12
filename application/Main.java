@@ -35,27 +35,29 @@ public class Main {
         qntDeReservas = sc.nextInt();
         System.out.println();
 
+        // faz as reservas baseado na quantidade de reservas definida pelo usuário
         for (int k = 0; k < qntDeReservas; k++) {
             List<Passagem> passagensSubLista = new ArrayList<Passagem>();
             intValido = false;
             System.out.println("Reserva " + (k + 1) + ": ");
 
-            // Endereço ====================================================
+            // lê o endereço ====================================================
             System.out.println("Digite o endereço de origem: ");
             enderecos.add(input.pegaEndereco());
             System.out.println();
 
-            // Aeroporto ==================================================
+            // lê o aeroporto ==================================================
             aeroportos.add(input.pegaAeroporto(enderecos.get(k)));
 
-            // Companhia Aérea ============================================
+            // lê a companhia Aérea ============================================
             companhiasAereas.add(input.pegaCompanhiaAerea());
 
-            // Voo ========================================================
+            // lê o voo ========================================================
             voos.add(input.pegaVoo(aeroportos.get(k)));
 
-            // Passageiros =================================================
+            // lê a quantidade de passageiros =================================================
             while (!intValido) {
+                // verifica se a quantidade de passageiros é válida
                 try {
                     System.out.println("Digite a quantidade de passageiros: ");
                     System.out.println("-- ATENÇÃO! As passagens são uma por pessoa! --");
@@ -71,24 +73,25 @@ public class Main {
             }
             sc.nextLine();
 
+            // lê cada passageiro baseado na quantidade de passageiros dada
             for (int i = 0; i < quantPassageiros; i++)
                 passageiros.add(input.pegaPassageiro(enderecos.get(k)));
 
-            // Passagens ================================================
+            // cria as passagens ================================================
             for (int j = 0; j < quantPassageiros; j++) {
                 passagens.add(input.pegaPassagem(voos.get(k), passageiros.get(j), j));
                 passagensSubLista.add(input.pegaPassagem(voos.get(k), passageiros.get(j), j));
             }
 
-            // Bilhetes
+            // cria os bilhetes
             Collections.sort(passagensSubLista); // Ordena a lista de passagens em ordem alfabética
-
             bilhetes.add(input.pegaBilhete(passagensSubLista, companhiasAereas.get(k), k));
 
-            // Reserva feita com sucesso
+            // Reserva feita
             input.reservaFeita(true);
         }
 
+        // MENU INICIAL
         do {
             opMenu = input.menuInicial();
             switch (opMenu) {
@@ -113,22 +116,23 @@ public class Main {
                     input.reservaFeita(false);
                     break;
                 }
+                //MENU DE ALTERAÇÃO
                 String opAlteracao;
                 do {
                     opAlteracao = input.menuAlteraInfo();
                     switch (opAlteracao) {
                         case "1":
-                            // Alterar informações do Passageiro
+                            // caso 1: altera as informações de um determinado passageiro
                             input.alteraInfoPassageiro(passageiros);
                             input.alteracaoFeita();
                             break;
                         case "2":
-                            // Alterar informações do Bilhete
+                            // caso 2: altera as informações de um determinado bilhete
                             input.alteraInfoBilhete(bilhetes);
                             input.alteracaoFeita();
                             break;
                         case "3":
-                            // Voltar ao menu principal
+                            // Volta ao menu inicial
                             break;
                         default:
                             System.out.println("Opção Inválida! Digite 1, 2 ou 3.");
@@ -137,14 +141,16 @@ public class Main {
                 } while (!opAlteracao.equals("3"));
                 break;
             case "3":
-                // Encerrar programa
+                // caso 3: encerra o programa
                 break;
             default:
+                // default: lida com entradas inválidas
                 System.out.println("Opção Inválida! Digite 1, 2 ou 3.");
                 break;
         }
         } while (!opMenu.equals("3"));
 
+        // MENSAGEM DE ENCERRAMENTO DO PROGRAMA
         System.out.println("Agradeçemos a preferência, tenha um bom dia!");
         sc.close();
     }

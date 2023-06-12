@@ -4,11 +4,13 @@ public class Aeroporto {
     private String codAeroporto;
     private Endereco endereco;
 
+    // CONSTRUTOR
     public Aeroporto(String codAeroporto, Endereco endereco) {
         this.codAeroporto = codAeroporto;
         this.endereco = endereco;
     }
 
+    // MÉTODOS DA CLASSE
     @Override
     public String toString() {
         return "Código Aeroporto: " + codAeroporto + ", Cidade: " + endereco.getCidade();

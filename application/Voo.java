@@ -11,6 +11,7 @@ public class Voo {
     private Calendar dataHoraDestino;
     private int capacidade;
 
+    // CONSTRUTOR
     public Voo(String numVoo, Aeroporto origem, Aeroporto destino, Calendar dataHoraOrigem,
             Calendar dataHoraDestino, int capacidade) {
         this.numVoo = numVoo;
@@ -21,6 +22,7 @@ public class Voo {
         this.capacidade = capacidade;
     }
 
+    // MÉTODOS DA CLASSE
     @Override
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");

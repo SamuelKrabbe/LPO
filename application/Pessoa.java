@@ -10,6 +10,7 @@ public abstract class Pessoa implements Verificavel {
     private String celular;
     private String dataNascimento;
 
+    // CONSTRUTOR
     public Pessoa(String nome, String cpf, String rg, Endereco endereco, String celular) {
         this.nome = nome;
         this.rg = rg;
@@ -19,6 +20,7 @@ public abstract class Pessoa implements Verificavel {
         validar(cpf);
     }
 
+    // MÉTODOS DA CLASSE
     @Override
     public boolean validar(String cpf) {
         boolean cpfValido = true;

@@ -9,6 +9,7 @@ public class Bilhete<T> {
     private double preco;
     private CompanhiaAerea compAerea;
 
+    // CONSTRUTOR
     public Bilhete(T numBilhete, List<Passagem> listPassagem, double preco, CompanhiaAerea compAerea) {
         this.numBilhete = numBilhete;
         this.listPassagem = listPassagem;
@@ -16,7 +17,9 @@ public class Bilhete<T> {
         this.compAerea = compAerea;
     }
 
+    // MÉTODOS DA CLASSE
     public void imprimirBilhete() {
+        //imprime as informações do bilhete
         System.out.println("- Número do Bilhete: " + numBilhete);
         System.out.println("- Companhia Aérea: " + compAerea.getNomeCompanhia());
         System.out.println(String.format("- Preço: R$%.2f", preco));
