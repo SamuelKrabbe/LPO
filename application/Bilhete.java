@@ -1,7 +1,7 @@
 package application;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.ArrayList;
 
 public class Bilhete<T> {
     private T numBilhete;
@@ -20,14 +20,18 @@ public class Bilhete<T> {
         System.out.println("- Número do Bilhete: " + numBilhete);
         System.out.println("- Companhia Aérea: " + compAerea.getNomeCompanhia());
         System.out.println(String.format("- Preço: R$%.2f", preco));
+        System.out.println("- Passagem(ns):");
 
-        System.out.println("- Passageiros:");
-        Collections.sort(listPassagem); // Ordena a lista de passagens em ordem alfabética
+        // Create a copy of the listPassagem
+        List<Passagem> passagemCopy = new ArrayList<>(listPassagem);
 
-        for (Passagem passagem : listPassagem) {
-            System.out.println("  -> " + passagem.getPassageiro().getNome() + ";");
+        synchronized (passagemCopy) {
+        	for (Passagem passagem : passagemCopy) {
+                System.out.println("  -> " + passagem + ";");
+            }
         }
     }
+
 
     // Getters e Setters
     public T getNumBilhete() {

@@ -67,7 +67,6 @@ public class PegaInput {
         System.out.println("Qual a companhia aérea de sua preferência? ");
         System.out.print("Nome da companhia -> ");
         nomeCompanhia = sc.nextLine().toUpperCase();
-        System.out.println("");
         codCompanhia = geraCodCompanhia(nomeCompanhia);
         System.out.println();
 
@@ -131,30 +130,31 @@ public class PegaInput {
         return passageiro;
     }
 
-    public Passagem pegaPassagem(Voo vooIda, Passageiro passageiro, int qntDeReservas) {
+    public Passagem pegaPassagem(Voo vooIda, Passageiro passageiro, int ordemPassageiro) {
         // gera uma passagem para tal passageiro
         String numPassagem, assento;
+        int capacidade = (int) (Math.random() * 500);
 
-        numPassagem = geraNumPassagem(qntDeReservas);
-
-        assento = geraAssentoPassagem(qntDeReservas);
-        Passagem passagem = new Passagem(numPassagem, vooIda, null, passageiro, assento);
+        numPassagem = geraNumPassagem(ordemPassageiro);
+        assento = geraAssentoPassagem(ordemPassageiro);
+        Voo vooVolta = new Voo(geraNumeroVoo(), vooIda.getDestino(), vooIda.getOrigem(), null, null, capacidade);
+        Passagem passagem = new Passagem(numPassagem, vooIda, vooVolta, passageiro, assento);
         return passagem;
     }
 
-    public String geraAssentoPassagem(int qntDeReservas) {
+    public String geraAssentoPassagem(int ordemPassageiro) {
         // gera o número do assento baseado na ordem de reservas
         String prefixoAssento = "A";
-        return prefixoAssento + qntDeReservas;
+        return prefixoAssento + ordemPassageiro;
     }
 
-    public String geraNumPassagem(int qntDeReservas) {
+    public String geraNumPassagem(int ordemPassageiro) {
         // gera o número da passagem baseado na ordem de reservas
         String prefixoPassagem = "P";
-        return prefixoPassagem + qntDeReservas;
+        return prefixoPassagem + ordemPassageiro;
     }
 
-    public Bilhete<String> pegaBilhete(List<Passagem> passagens, int limiteInferior, int limiteSuperior,
+    public Bilhete<String> pegaBilhete(List<Passagem> passagens,
             CompanhiaAerea companhiaAerea, int qntDeReservas) {
         /*
          * gera um bilhete levando em conta a quantidade de passagens de cada bilhete,
@@ -164,9 +164,8 @@ public class PegaInput {
         String numBilhete;
         numBilhete = geraNumBilhete(qntDeReservas);
         double preco = Math.random() * 2000;
-        List<Passagem> passagensSubLista = passagens.subList(limiteInferior, limiteSuperior);
 
-        Bilhete<String> bilhete = new Bilhete<>(numBilhete, passagensSubLista, preco, companhiaAerea);
+        Bilhete<String> bilhete = new Bilhete<>(numBilhete, passagens, preco, companhiaAerea);
         return bilhete;
     }
 
@@ -180,11 +179,10 @@ public class PegaInput {
         // layout do menu inicial
         String opMenu;
         System.out.println("===============================================");
-        System.out.println("MENU: ");
-        System.out.println("Reservar um voo - digite 1");
-        System.out.println("Ver informações no(s) bilhete(s) - digite 2");
-        System.out.println("Alterar informação no(s) bilhete(s) - digite 3");
-        System.out.println("Sair - digite 4");
+        System.out.println("MENU INICIAL: ");
+        System.out.println("Ver informações no(s) bilhete(s) - digite 1");
+        System.out.println("Alterar informação no(s) bilhete(s) - digite 2");
+        System.out.println("Sair - digite 3");
         System.out.println("===============================================");
 
         System.out.println();
@@ -198,10 +196,11 @@ public class PegaInput {
         // layout do menu para a alteração de informações
         String opAlteracao;
         System.out.println("===============================================");
-        System.out.println("Escolha o tipo de informação que deseja alterar:");
+        System.out.println("MENU DE ALTERAÇÃO: ");
+        System.out.println("-- Escolha o tipo de informação que deseja alterar --");
         System.out.println("Informações do Passageiro - digite 1");
         System.out.println("Informações do Bilhete - digite 2");
-        System.out.println("Voltar ao menu principal - digite 3");
+        System.out.println("Voltar ao menu inicial - digite 3");
         System.out.println("===============================================");
 
         System.out.println();
@@ -212,7 +211,7 @@ public class PegaInput {
     }
 
     public void alteraInfoPassageiro(List<Passageiro> passageiros) {
-        System.out.println("Digite o nome do passageiro -> ");
+        System.out.print("Digite o nome do passageiro -> ");
         String nomePassageiro = sc.nextLine();
         System.out.println();
 
@@ -221,19 +220,19 @@ public class PegaInput {
             if (passageiro.getNome().equals(nomePassageiro)) {
                 passageiroAlvo = passageiro;
                 System.out.println("Altere as informações do passageiro " + nomePassageiro + ": ");
-                System.out.print("Nome -> ");
+                System.out.print("Novo nome -> ");
                 passageiroAlvo.setNome(sc.nextLine());
                 System.out.println();
-                System.out.print("CPF -> ");
+                System.out.print("Novo CPF -> ");
                 passageiroAlvo.setCpf(sc.nextLine());
                 System.out.println();
-                System.out.print("RG -> ");
+                System.out.print("Novo RG -> ");
                 passageiroAlvo.setRg(sc.nextLine());
                 System.out.println();
-                System.out.print("Celular -> ");
+                System.out.print("Novo Celular -> ");
                 passageiroAlvo.setCelular(sc.nextLine());
                 System.out.println();
-                System.out.print("Número do passaporte -> ");
+                System.out.print("Novo Número do passaporte -> ");
                 passageiroAlvo.setNumPassaporte(sc.nextLine());
                 System.out.println();
                 return;
@@ -245,10 +244,11 @@ public class PegaInput {
 
     public void alteraInfoPassagem(List<Passagem> listPassagem, List<Bilhete<String>> bilhetes) {
         System.out.println("===============================================");
-        System.out.println("Escolha uma operação: ");
+        System.out.println("-- Escolha uma operação --");
         System.out.println("Adicionar passagem - digite 1");
         System.out.println("Remover passagem - digite 2");
         System.out.println("Alterar passagem - digite 3");
+        System.out.println("Voltar ao menu de alteração - digite 4");
         System.out.println("===============================================");
         System.out.println();
         String opAlteraPassagem = sc.nextLine().toLowerCase();
@@ -263,8 +263,8 @@ public class PegaInput {
                 listPassagem.add(pegaPassagem(pegaVoo(pegaAeroporto(endereco)), pegaPassageiro(endereco), bilhetes.size()));
                 break;
             case "2":
-                System.out.println("Digite o número da passagem que deseja remover -> ");
-                numPassagem = sc.nextLine();
+                System.out.print("Digite o número da passagem que deseja remover -> ");
+                numPassagem = sc.nextLine().toUpperCase();
                 System.out.println();
                 for (Passagem passagem : listPassagem) {
                     if (passagem.getNumero().equals(numPassagem)) {
@@ -274,8 +274,8 @@ public class PegaInput {
                 }
                 break;
             case "3":
-                System.out.println("Digite o número da passagem que deseja alterar -> ");
-                numPassagem = sc.nextLine();
+                System.out.print("Digite o número da passagem que deseja alterar -> ");
+                numPassagem = sc.nextLine().toUpperCase();
                 System.out.println("Digite o endereço de origem: ");
                 System.out.println();
                 endereco = pegaEndereco();
@@ -287,6 +287,8 @@ public class PegaInput {
                     }
                 }
                 break;
+            case "4":
+                break;
             default:
                 System.out.println("Opção Inválida! Digite 1, 2 ou 3.");
                 break;
@@ -294,7 +296,7 @@ public class PegaInput {
     }
 
     public void alteraInfoBilhete(List<Bilhete<String>> bilhetes) {
-        System.out.println("Digite o número do bilhete -> ");
+        System.out.print("Digite o número do bilhete -> ");
         String numBilhete = sc.nextLine().toUpperCase();
         System.out.println();
 
@@ -303,6 +305,7 @@ public class PegaInput {
             if (bilhete.getNumBilhete().equals(numBilhete)) {
                 bilheteAlvo = bilhete;
                 System.out.println("Altere as informações do bilhete " + numBilhete + ": ");
+                System.out.println();
                 bilheteAlvo.setCompAerea(pegaCompanhiaAerea());
                 double preco = Math.random() * 2000;
                 bilheteAlvo.setPreco(preco);
@@ -330,7 +333,6 @@ public class PegaInput {
 
     public void alteracaoFeita() {
         // mensagem para quando a alteração foi feita.
-        System.out.println();
         System.out.println("Alteração feita com sucesso!\nAgradeçemos a preferência, tenha um bom dia!");
         System.out.println();
     }
